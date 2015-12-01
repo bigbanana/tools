@@ -10,7 +10,7 @@ if [ -z "$name" -o -z "$password" ] ;then
  exit;
 fi
 
-random=$(awk 'BEGIN{srand();sum=rand()*10;printf("%d\n",sum)}');
+random=$(awk 'BEGIN{srand();sum=rand()*1000;printf("%d\n",sum)}');
 printf "\n\n\n---------------开始任务---------------\n\n\n" >> $log;
 date >> $log;
 printf "休眠"${random}"秒\n" >> $log;
