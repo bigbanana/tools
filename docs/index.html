@@ -30,7 +30,7 @@
 <body>
   <p>可以使用.作占位符,比如".梦."匹配的是"x梦x",".梦"匹配的是"x梦x"或者"xx梦"</p>
   <div>
-    <input type="text" id="name">
+    搜索：<input type="text" id="name" value=".梦.">
   </div>
   <div id="result"></div>
   <script>
@@ -40,16 +40,16 @@
     $.get('./data.txt', function(res){
       res = res.replace(/\n/g, ' ')
       names = res.split(' ')
-      render(names)
+      render()
     })
     $name.on("keyup", function(){
-      var res = names.filter(function(item){
-        return item.search($name.val()) != -1
-      })
-      render(res)
+      render()
     })
 
-    var render = _.debounce(function(list){
+    var render = _.debounce(function(){
+      var list = names.filter(function(item){
+        return item.search($name.val()) != -1
+      })
       var html = list.map(function(item){
         return '<span class="item">'+item+'</span>'
       })
