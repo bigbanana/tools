@@ -57,7 +57,10 @@
       var html = list.map(function(item){
         return '<span class="item">'+item+'</span>'
       })
-      $result.html(html)
+      if(html.length == 0){
+        html.push('<div style="text-align:center;">没有数据哟</div>')
+      }
+      $result.html(html.join(''))
     },500)
   </script>
 </body>
