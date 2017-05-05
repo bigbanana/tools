@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>名字</title>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="http://apps.bdimg.com/libs/lodash/3.5.0/lodash.js"></script>
+  <style>
+    body{
+      font-family: microsoft yahei;
+    }
+    #name{
+      width:400px;
+      padding: 4px 10px;
+      font-size: 14px;
+    }
+    #result{
+      border-top: 2px solid #ddd;
+      margin-top: 10px; padding-top: 10px;
+    }
+    #result .item{
+      display: inline-block;
+      background-color: #9ed1fa;
+      padding: 4px 8px;
+      margin: 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <p>可以使用.作占位符,比如".梦."匹配的是"x梦x",".梦"匹配的是"x梦x"或者"xx梦"</p>
+  <div>
+    <input type="text" id="name">
+  </div>
+  <div id="result"></div>
+  <script>
+    var names = []
+    var $name = $("#name")
+    var $result = $("#result")
+    $.get('./data.txt', function(res){
+      res = res.replace(/\n/g, ' ')
+      names = res.split(' ')
+      render(names)
+    })
+    $name.on("keyup", function(){
+      var res = names.filter(function(item){
+        return item.search($name.val()) != -1
+      })
+      render(res)
+    })
+
+    var render = _.debounce(function(list){
+      var html = list.map(function(item){
+        return '<span class="item">'+item+'</span>'
+      })
+      $result.html(html)
+    },500)
+  </script>
+</body>
+</html>
