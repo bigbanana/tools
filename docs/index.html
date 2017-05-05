@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>名字</title>
   <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
   <script src="http://apps.bdimg.com/libs/lodash/3.5.0/lodash.js"></script>
@@ -10,9 +12,11 @@
       font-family: microsoft yahei;
     }
     #name{
-      width:400px;
+      width:100%;
       padding: 4px 10px;
       font-size: 14px;
+      display:block;
+      box-sizing: border-box;
     }
     #result{
       border-top: 2px solid #ddd;
@@ -30,7 +34,7 @@
 <body>
   <p>可以使用.作占位符,比如".梦."匹配的是"x梦x",".梦"匹配的是"x梦x"或者"xx梦"</p>
   <div>
-    搜索：<input type="text" id="name" value=".梦.">
+    <input type="text" id="name" value=".梦.">
   </div>
   <div id="result"></div>
   <script>
